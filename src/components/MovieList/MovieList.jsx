@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation} from 'react-router-dom';
-import {Box,ListFilms, Wrapper ,Title,ButtonLoad} from './MovieList.styled';
+import ButtonUpTop from 'components/ButtonUpTop/ButtonUpTop'
+import {Box,ListFilms, Wrapper ,Title,ButtonLoad,WrapperBtn} from './MovieList.styled';
 import {MovieItem} from 'components/MovieItem/MovieItem'
 import { getTrendingMovies } from '../../services/fetchMovies';
 
@@ -19,15 +20,21 @@ const MovieList = () => {
 
   const handleClick=()=>{
     setPage(prev => prev + 1);
+    setMovies(prev => [...prev,...movies])
 
   }
+  const onUpTop = () => {
+    if (window.pageYOffset > 0) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
 
   return (
     <Box>
       <Title>Trending today</Title>
       <ListFilms >
-          {movies.map(({id,activeId,original_title,poster_path}) => (
+          {movies.map(({id,original_title,poster_path}) => (
           
           <Wrapper key={id}>
       
@@ -42,7 +49,10 @@ const MovieList = () => {
         ))}
       
       </ListFilms>
-      <ButtonLoad type='button'onClick={handleClick}>Load More</ButtonLoad>
+      <WrapperBtn>
+        <ButtonLoad type='button'onClick={handleClick}>Load More</ButtonLoad>
+        <ButtonUpTop onClick={onUpTop} />
+      </WrapperBtn>
     </Box>
   
   );

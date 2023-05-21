@@ -30,7 +30,7 @@ export const SearchForm = ({ setSearchParams }) => {
           
         />
         
-        <FormButton type="submit" disabled={!query}>
+        <FormButton type="submit" >
           <ButtonLabel>
             <SearchButton />
           </ButtonLabel>
