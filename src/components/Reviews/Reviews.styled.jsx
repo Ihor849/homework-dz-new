@@ -6,19 +6,29 @@ export const StyledList = styled.ul`
 export const ListItem = styled.li`
   font-size: 20px;
   padding: 6px;
-  background-color:  #0bd2edce;;
+  background-color: rgb(86, 100, 100);
   border-radius: 14px;
 
   :not(:last-child) {
     margin-bottom: 12px;
   }
-
-  span {
-    font-size: 25px;
-    color: #2117db;
+  &>.description{
+      background-color: transparent; 
+    }
+  &>p{
+    display:-webkit-inline-flex;
+    background-color: #c312b7;
+    padding: 5px 10px;
+    border-radius: 14px;
+    color: #ffffff;
+    
+    
   }
+  
+  
 `;
 export const ReviewsDescr = styled.p`
-  color: #000000;
+  
+  color: #ffffff;
   margin-top: 6px;
 `;

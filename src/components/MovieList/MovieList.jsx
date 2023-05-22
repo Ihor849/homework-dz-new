@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation} from 'react-router-dom';
 import ButtonUpTop from 'components/ButtonUpTop/ButtonUpTop'
-import {Box,ListFilms, Wrapper ,Title,ButtonLoad,WrapperBtn} from './MovieList.styled';
+import {Box,ListFilms ,Title,ButtonLoad,WrapperBtn} from './MovieList.styled';
 import {MovieItem} from 'components/MovieItem/MovieItem'
 import { getTrendingMovies } from '../../services/fetchMovies';
 
@@ -36,7 +36,7 @@ const MovieList = () => {
       <ListFilms >
           {movies.map(({id,original_title,poster_path}) => (
           
-          <Wrapper key={id}>
+         
       
             <MovieItem
                   location={location}
@@ -45,7 +45,7 @@ const MovieList = () => {
                   url={poster_path}
                   activeId={id}
                 />
-          </Wrapper>
+          
         ))}
       
       </ListFilms>

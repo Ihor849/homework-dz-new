@@ -1,17 +1,13 @@
 import styled from "styled-components";
+
 export const Box=styled.div`
   padding: 35px;
 
 `
-export const WrapperBtn=styled.div`
-   display:flex;
-  justify-content: center;
-  align-items: center;
-  
-  
-`
+
 export const Title = styled.h1`
   font-size: 50px;
+  
   text-transform: uppercase;
   background: linear-gradient(
     337deg,
@@ -31,30 +27,18 @@ export const ListFilms = styled.ul`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap:10px;
- 
+  gap:16px;
+  padding: 20px;
+  
 `;
-export const Wrapper = styled.div`
-  display:flex;
+
+export const WrapperBtn=styled.div`
+   display:flex;
   justify-content: center;
   align-items: center;
-  max-width: 350px;
-  font-weight: 400;
-  font-size: 14px;
-
-  a:hover,
-  a:focus {
-    background-color: #00ffff;
-    
-  }
-
-  a {
-    display: block;
-    align-items: center;
-    gap: 6px;
-    padding: 16px 16px;
-  }
-`;
+  
+  
+`
 export const ButtonLoad = styled.button`
   display: flex;
   justify-content: center;

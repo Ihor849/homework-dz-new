@@ -12,8 +12,8 @@ const Reviews = () => {
       try {
         const Reviews = await getReviewsMovie(movieId);
         setReviews(Reviews);
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        alert(error.message);
       }
     };
     fetchReviews();
@@ -28,7 +28,7 @@ const Reviews = () => {
           <p>
             <span>Author:</span> {author}
           </p>
-          <ReviewsDescr>{content}</ReviewsDescr>
+          <ReviewsDescr className='description'>{content}</ReviewsDescr>
         </ListItem>
       ))}
     </StyledList>

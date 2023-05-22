@@ -24,8 +24,10 @@ img,
 picture,
 svg {
   display: block;
+  margin: 0;
+  padding: 0;
   /* max-width: 100%; */
-  height: auto;
+  /* height: auto; */
 }
 input,
 button,
@@ -46,6 +48,7 @@ ul  {
   list-style: none;
 }
 a {
+  margin:0;
   text-decoration: none;
   color: inherit;
 }

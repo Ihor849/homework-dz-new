@@ -26,10 +26,10 @@ const MoviesPage = () => {
     };
     fetchMovieByQuery();
   }, [searchParams, page]);
-
+  
   const handleClick=()=>{
-    console.log(page);
     setPage(prev => prev + 1);
+    setMovies(prev => [...prev,...movies])
      
   }
   const onUpTop = () => {

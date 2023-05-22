@@ -11,7 +11,7 @@ export const ListItem = styled.li`
   font-size: 14px;
   padding: 6px;
   max-width: min-content;
-  background-color: #0bd2edce;
+  background-color: rgb(86, 100, 100);
   border-radius: 14px;
 
   :not(:last-child) {
@@ -19,10 +19,20 @@ export const ListItem = styled.li`
   }
 
   img {
-    max-width: 182px;
+    width: 200px;
     border-radius: 8px;
   }
   span {
-    color: #090909;
+    color: #ffffff;
   }
 `;
+export const Info=styled.div`
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+  padding: 8px;
+  &>p{
+    font-size: 16px;
+    color: #ffffff;
+  }
+`

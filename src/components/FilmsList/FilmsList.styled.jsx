@@ -1,70 +1,73 @@
+
+import { Link } from 'react-router-dom'
 import styled from "styled-components"
 
-// export const ListFilms = styled.ul`
-//   margin-top: 12px;
-// `;
-// export const ItemFilms = styled.li`
-//   font-weight: 400;
-//   font-size: 14px;
-
-//   background-color: #2a2a2a;
-//   border-radius: 14px;
-
-//   :not(:last-child) {
-//     margin-bottom: 6px;
-//   }
-
-//   a:hover,
-//   a:focus {
-//     background-color: #ffc700;
-//     color: #111111;
-//   }
-
-//   a {
-//     display: block;
-//     padding: 16px 16px;
-//   }
-// `;
 export const Box=styled.div`
-  padding: 35px;
+display:flex;
+    align-items: center;
+    flex-direction: column;
+  /* padding: 35px; */
 
 `
-export const Wrapper = styled.div`
+export const StyledLink=styled(Link)`
   display:flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 350px;
-  font-weight: 400;
-  font-size: 14px;
-
-  a:hover,
-  a:focus {
-    background-color: #00ffff;
-    color: #111111;
-  }
-
-  a {
-    display: block;
     align-items: center;
-    gap: 6px;
-    padding: 16px 16px;
-  }
-`;
-export const ListFilms = styled.ul`
+    justify-content:center;
+`
+export const BoxImg=styled.div`
   display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap:10px;
- 
-`;
+    align-items: center;
+    flex-direction: column;
+    
+`
+export const TitleBox=styled.div`
+    padding:12px;
+    text-align: center;
+
+`
+export const ImgWrapper=styled.div`
+display:flex;
+align-items:center;
+justify-content: center;
+  width: 350px;
+  height: 525px;
+`
+
 export const FilmItem = styled.li`
-    display:flex;
+    height: 700px;
+    width: 400px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
     align-items: center;
+    background-color: rgb(86, 100, 100);
+    border-radius: 6px;
+    
+  }
+  :hover,
+  :focus {
+    background-color: #00ffff;
+  
+`
+export const ListFilms = styled.ul`
+   display:flex; 
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; 
+  gap:16px;
+  padding: 20px;
+  
+`;
+
+
+export const Title = styled.h2`
+padding-top:15px;
+    
+    color: #ffffff
 `
 export const Img = styled.img`
-    display:flex
+    display:flex;
+    width: 350px;
 `
-export const Title = styled.h2`
-    text-align:left;
-`
+

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastMovie } from '../../services/fetchMovies';
 import { BASE_URL, PLACEHOLDER } from 'components/utils/const';
-import { ListItem, StyledList } from './Cast.styled';
+import { ListItem, StyledList,Info } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -35,12 +35,14 @@ const Cast = () => {
                 }`}
                 alt={original_name}
               />
-              <p>
-                <span> Actor:</span> {original_name}
-              </p>
-              <p>
-                <span>Character:</span> {character}
-              </p>
+              <Info>
+                <p>
+                  <span> Actor:</span> {original_name}
+                </p>
+                <p>
+                  <span>Character:</span> {character}
+                </p>
+              </Info>
             </ListItem>
           ))}
         </StyledList>

@@ -1,27 +1,30 @@
 import { Suspense, useEffect, useState } from 'react';
 import {
-  Link,
-  NavLink,
   Outlet,
   useLocation,
   useParams,
 } from 'react-router-dom';
 import { ReactComponent as Exit } from 'components/img/icons/Exit.svg';
+import { ReactComponent as Masks } from 'components/img/icons/Masks.svg';
+import { ReactComponent as Thumbs } from 'components/img/icons/Thumbs.svg';
 
 import { getMovieById } from '../../services/fetchMovies';
-import { BASE_URL} from 'components/utils/const';
+import { BASE_URL } from 'components/utils/const';
 import {
   FilmWrapper,
+  Wrapper,
   StyledList,
   ListItem,
   FilmImg,
   FilmTitle,
   FilmDescr,
-  GoBackLink,
   FilmSubTitle,
   StyledListDescr,
-  Wrapper
-  
+  Linkback,
+  CastNavLink,
+  Description,
+  Genre,
+  Release,
 } from './MoviesDetails.styled';
 
 const MoviesDetails = () => {
@@ -46,19 +49,29 @@ const MoviesDetails = () => {
 
   return (
     <>
-      <GoBackLink>
-        <Exit/>
-        <Link to={backLinkHref}>
-          <Wrapper>Go back</Wrapper>
-        </Link>
-      </GoBackLink>
-      
+      <Wrapper>
+        <Linkback to={backLinkHref}>
+          <Exit />
+          Go back
+        </Linkback>
+        <h2>Additional information</h2>
+          <StyledList>
+            <ListItem>
+              <CastNavLink to="cast" state={location.state}>
+                Cast<Masks/>
+              </CastNavLink>
+            </ListItem>
+            <ListItem>
+              <CastNavLink to="reviews" state={location.state}>
+                Reviews<Thumbs/>
+              </CastNavLink>
+            </ListItem>
+          </StyledList>
+      </Wrapper>
+
       <FilmWrapper>
-        <FilmImg
-          src={`${BASE_URL}${movie.poster_path}`}
-          alt={movie.name}
-        />
-        <div>
+        <FilmImg src={`${BASE_URL}${movie.poster_path}`} alt={movie.name} />
+        <Description>
           <FilmTitle>{movie.original_title}</FilmTitle>
           <FilmSubTitle>Rating: {Math.round(movie.vote_average)}</FilmSubTitle>
           <FilmSubTitle>Overview</FilmSubTitle>
@@ -66,25 +79,14 @@ const MoviesDetails = () => {
           <FilmSubTitle>Genres</FilmSubTitle>
           <StyledListDescr>
             {movie.genres?.map(genre => (
-              <li key={genre.id}>{genre.name}</li>
+              <Genre key={genre.id}>{genre.name}</Genre>
             ))}
           </StyledListDescr>
-        </div>
+          <Release>Release: <span>{movie.release_date}</span> </Release>
+
+        </Description>
       </FilmWrapper>
       <div>
-        <h2>Additional information</h2>
-        <StyledList>
-          <ListItem>
-            <NavLink to="cast" state={location.state}>
-              Cast<span>.</span>
-            </NavLink>
-          </ListItem>
-          <ListItem>
-            <NavLink to="reviews" state={location.state}>
-              Reviews<span>.</span>
-            </NavLink>
-          </ListItem>
-        </StyledList>
         <Suspense fallback={<div>Loading subpage...</div>}>
           <Outlet />
         </Suspense>
@@ -92,4 +94,4 @@ const MoviesDetails = () => {
     </>
   );
 };
-export default MoviesDetails
+export default MoviesDetails;

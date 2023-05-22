@@ -2,14 +2,18 @@ import { useLocation, Link } from 'react-router-dom';
 import { BASE_URL } from 'components/utils/const';
 
 import {
-  Wrapper,
+  ImgWrapper,
   FilmItem,
   Img,
   Title,
   ListFilms,
   Box,
+  BoxImg,
+  TitleBox,
 } from './FilmsList.styled';
 import defaultMovie from 'components/img/defaultMovie.jpeg';
+
+const ImgDefaultMovie = defaultMovie;
 
 const FilmsList = ({ movies }) => {
   const location = useLocation();
@@ -17,22 +21,28 @@ const FilmsList = ({ movies }) => {
   return (
     <Box>
       <ListFilms>
-        {movies.map(({ id, activeId, original_title, poster_path, title }) => (
-          <Wrapper key={id}>
+        {movies.map(({ id, original_title, poster_path, title }) => (
+          
             <FilmItem key={id}>
               <Link state={{ from: location }} to={`/movies/${id}`}>
-                <Img
-                  src={
-                    poster_path !== null
-                      ? `${BASE_URL}${poster_path}`
-                      : defaultMovie
-                  }
-                  alt={title}
-                />
-                <Title>{original_title}</Title>
+                <BoxImg>
+                  <ImgWrapper>
+                    <Img
+                      src={
+                        poster_path !== null
+                          ? `${BASE_URL}${poster_path}`
+                          : ImgDefaultMovie
+                      }
+                      alt={title}
+                    />
+                  </ImgWrapper>
+                  <TitleBox>
+                    <Title>{original_title}</Title>
+                  </TitleBox>
+                </BoxImg>
               </Link>
             </FilmItem>
-          </Wrapper>
+          
         ))}
       </ListFilms>
     </Box>
