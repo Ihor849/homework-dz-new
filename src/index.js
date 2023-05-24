@@ -1,15 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+import { Provider } from 'react-redux';
+import store from 'components/store/store';
+
+import { ThemeProvider } from 'styled-components';
+import { theme } from './style/theme';
+import AppHook from 'components/App/AppHook';
 import { GlobalStyle } from './style/GlobalStyle';
-import { BrowserRouter } from "react-router-dom";
-import {App} from 'components/App/App';
-import './index.css';
+
+
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+
+
   <React.StrictMode>
-    <BrowserRouter basename="homework-dz-new">
-      <App />
-    </BrowserRouter >
+     <Provider store={store}>
+    <ThemeProvider theme={theme}>
+   
+      <AppHook />
+      
+    </ThemeProvider>
+    </Provider>
     <GlobalStyle />
   </React.StrictMode>
 );

@@ -1,13 +1,13 @@
-import MovieList from 'components/MovieList/MovieList';
+// import MovieList from 'components/MovieList/MovieList';
 
-const Home = () => {
+// const Home = () => {
   
-  return (
-    <div>
-      <MovieList  />
+//   return (
+//     <div>
+//       <MovieList  />
       
-    </div>
-  );
-};
+//     </div>
+//   );
+// };
 
-export default Home;
+// export default Home;
