@@ -1,6 +1,8 @@
-import {useReducer } from 'react';
+// import {useReducer } from 'react';
+import Notiflix from 'notiflix';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { nanoid } from 'nanoid';
+import { addContact } from 'redux/contactsSlice';
 import {
   Form,
   BoxName,
@@ -10,70 +12,64 @@ import {
   Button,
 } from './ContactForm.styled';
 
-const initialState ={
-name: '',
-number: '',
-};
 
-function reducer(state, action) {
-  switch (action.type) {
-    case 'name':{
-      return {
-        ...state, name: action.payload,
-  
-      };
-    }
-      
-    case 'number':{
-      return {
-        ...state, number: action.payload,
-  
-      };
-      
-    }
-    case "reset": {
-      return initialState
-    }
-      
-    default: return state
-  }
-};
+// const DEFAULT_CONTACTS = [
+//   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+//   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+//   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+//   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+// ];
 
+export default function ContactForm() {
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
 
-export default function ContactForm({onSubmit}) {
- 
-  const[state, dispatch] = useReducer(reducer, initialState)
-   
-  const hendleChange = e => {
-    const {name, value} = e.currentTarget;
-    dispatch({
-      type: name, 
-      payload: value})
-  };
+  const handleSubmit = e => {
+    const { name, number } = e.target;
 
-
-  const hendleSubmit = e => {
-    console.log(state);
     e.preventDefault();
-  
-    const contact = {id:nanoid(),...state }
+    const data = {
+      name: name.value,
+      number: number.value,
+      
+    };
+    
    
-    onSubmit(contact)
-    dispatch({
-    type: "reset"})
+    if (contacts.find(contact => contact.name.toLowerCase() === data.name.toLowerCase()
+          )
+        ) {
+          console.log('Уже есть');
+          Notiflix.Report.info(
+            'INFO',
+            `${data.name} already in the phonebook`
+          );
+          return;
+        } else if (contacts.find(contact => contact.number === data.number)) {
+          console.log('НОМЕР есть');
+          Notiflix.Report.info(
+            'INFO',
+            `${data.number} already in the phonebook`
+          );
+          return;
+        }
+        Notiflix.Notify.success(
+          `${data.name} This subscriber is added to the phone book`
+        );
+        dispatch(addContact(data))
     
   };
 
 
+
   return (
-    <Form onSubmit={hendleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <BoxName>
         <Label>
           Name:
           <Input
             type="text"
-            onChange={hendleChange}
-            value={state.name}
+            // onChange={handleChange}
+            // value={name}
             name="name"
             // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             // title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
@@ -86,8 +82,8 @@ export default function ContactForm({onSubmit}) {
           Number:
           <Input
             type="tel"
-            value={state.number}
-            onChange={hendleChange}
+            // value={state.number}
+            // onChange={handleChange}
             name="number"
             // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             // title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
@@ -95,13 +91,10 @@ export default function ContactForm({onSubmit}) {
           />
         </Label>
       </BoxNumber>
-      <Button type="submit">
-        Add contact
-      </Button>
+      <Button type="submit">Add contact</Button>
     </Form>
   );
 }
-
-
-
-
+    
+  
+    
