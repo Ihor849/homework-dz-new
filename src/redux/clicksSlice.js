@@ -1,0 +1,35 @@
+import { createSlice } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage'
+import { persistReducer} from 'redux-persist'
+
+
+const clicksSlice = createSlice({
+  name: 'clicks',
+  initialState: {value: 0, a:1, b:5, c:25},
+  reducers: {
+    
+    update: (state, action) => {
+      // state.value += 1;
+      state.value += action.payload;
+    },
+  },
+});
+
+const persistConfig = {
+  key: 'clicks',
+  version: 1,
+  storage,
+  whitelist:["value"],
+  // blacklist:["value"]
+}
+export const clicksReducer = persistReducer(
+  persistConfig,
+   clicksSlice.reducer
+)
+
+export const { update } = clicksSlice.actions
+
+// == Selectors  == //
+
+export const getClicksValue = state => state.clicks.value
+

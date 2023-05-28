@@ -1,0 +1,39 @@
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  width: 600px;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 30px;
+  outline: 1px solid green;
+
+}
+.title {
+  text-align: center;
+ font-size: 20px;
+ font-weight: bold;
+  
+}
+.number{
+  padding: 15px;
+  font-size: 30px;
+ font-weight: bold;
+}
+.btnBlock{
+  display: flex;
+  gap: 10px;
+}
+.btnClicks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  width: 200px;
+  height: 60px;
+  border: 2px solid red;
+  border-radius: 15px;
+}
