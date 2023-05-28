@@ -55,6 +55,7 @@ export default function ContactForm() {
         Notiflix.Notify.success(
           `${data.name} This subscriber is added to the phone book`
         );
+        console.log(data);
         dispatch(addContact(data))
     
   };

@@ -10,6 +10,15 @@ export const ContactsList = () => {
 
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
+  const filter = useSelector(state => state.filter);
+
+  const filterContacts = 
+    [...contacts.filter(contact => contact.name.toLowerCase().includes(filter.filter))]
+    
+  ;
+  console.log(contacts);
+  console.log(filter.filter);
+console.log(filterContacts);
 
   const onDelete = (id, name) => {
     Notiflix.Confirm.show(
@@ -36,7 +45,7 @@ export const ContactsList = () => {
   return (
     contacts.length !== 0 && (
       <List>
-        {contacts.map(({ id, name, number }) => (
+        {filterContacts.map(({ id, name, number }) => (
           <ContactItem
             key={id}
             name={name}

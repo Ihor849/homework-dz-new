@@ -1,18 +1,36 @@
 // import propTypes from 'prop-types';
 import { useDispatch, useSelector} from 'react-redux';
 
-import { filterContacts } from 'redux/filterSlice';
+import { filterContacts, getFilterValue } from '../../redux/filtersSlice';
+
 import { BoxFilter, Label, Input } from './ContactFilter.styled';
 
 
 export const ContactFilter = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
   const filter = useSelector(state => state.filter);
+  
 
-  const changeFilter = e => {
-    dispatch(filterContacts(e.target.value));
-    console.log(filter);
-  };
+  const filterValue = useSelector(getFilterValue);
+
+
+  // const changeFilter = e => {
+  //   console.log(e.target.value);
+    
+  //   if (filter) {
+  //     console.log("HHHHHHHH");
+  //     console.log(contacts);
+
+  //     return contacts.filter(
+  //       contact =>contact.name.toLowerCase().includes(filter));
+      
+  //   } 
+
+  //   // return contactsFilter;
+  //   dispatch(filterContacts(e.target.value));
+  //   console.log(filter);
+  // };
     
 
   return (
@@ -22,8 +40,8 @@ export const ContactFilter = () => {
       <Input
         type="text"
         name="filter"
-        value={filter}
-        onChange={changeFilter}
+        value={filterValue}
+        onChange={event => dispatch(filterContacts(event.currentTarget.value))}
         // disabled={dis}
       />
     </BoxFilter>
