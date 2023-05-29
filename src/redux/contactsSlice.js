@@ -20,7 +20,7 @@ const contactsSlice = createSlice({
         return {
           payload: {
             id: nanoid(),
-            ...data
+            ...data,
           },
         };
       },
@@ -30,21 +30,30 @@ const contactsSlice = createSlice({
       return state.filter(contact => contact.id !== action.payload);
     },
 
-    updateContact(state, action){
+    updateContact(state, action) {
       console.log(state);
       console.log(action);
 
-      const newState= state.filter(contact => contact.id !== action.payload.id )
+      const newState = state.filter(
+        contact => contact.id !== action.payload.id
+      );
 
-      if(state.filter(contact => (contact.id !== action.payload.id) && (contact.name === action.payload.name || contact.number === action.payload.number))){
-        
-        return [...newState, action.payload]
+      if (
+        state.filter(
+          contact =>
+            contact.id !== action.payload.id &&
+            (contact.name === action.payload.name ||
+              contact.number === action.payload.number)
+        )
+      ) {
+        return [...newState, action.payload];
       }
-      return [...state]
+      return [...state];
     },
-    
   },
 });
 
-export const { addContact, deleteContact, updateContact } = contactsSlice.actions;
+export const { addContact, deleteContact, updateContact } =
+  contactsSlice.actions;
+  
 export const contactsReducer = contactsSlice.reducer;

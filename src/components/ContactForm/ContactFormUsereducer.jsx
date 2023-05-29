@@ -1,5 +1,6 @@
 // import {useReducer } from 'react';
 import Notiflix from 'notiflix';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addContact } from 'redux/contactsSlice';
@@ -12,7 +13,6 @@ import {
   Button,
 } from './ContactForm.styled';
 
-
 // const DEFAULT_CONTACTS = [
 //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
 //   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -23,45 +23,41 @@ import {
 export default function ContactForm() {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
-
+  
   const handleSubmit = e => {
+    
     const { name, number } = e.target;
-
+    console.log(name.value);
     e.preventDefault();
     const data = {
       name: name.value,
       number: number.value,
-      
     };
+
+    if (
+      contacts.find(
+        contact => contact.name.toLowerCase() === data.name.toLowerCase()
+      )
+    ) {
+      console.log('Уже есть');
+      Notiflix.Report.info('INFO', `${data.name} already in the phonebook`);
+      return;
+    } else if (contacts.find(contact => contact.number === data.number)) {
+      console.log('НОМЕР есть');
+      Notiflix.Report.info('INFO', `${data.number} already in the phonebook`);
+      return;
+    }
+    Notiflix.Notify.success(
+      `${data.name} This subscriber is added to the phone book`
+    );
     
-   
-    if (contacts.find(contact => contact.name.toLowerCase() === data.name.toLowerCase()
-          )
-        ) {
-          console.log('Уже есть');
-          Notiflix.Report.info(
-            'INFO',
-            `${data.name} already in the phonebook`
-          );
-          return;
-        } else if (contacts.find(contact => contact.number === data.number)) {
-          console.log('НОМЕР есть');
-          Notiflix.Report.info(
-            'INFO',
-            `${data.number} already in the phonebook`
-          );
-          return;
-        }
-        Notiflix.Notify.success(
-          `${data.name} This subscriber is added to the phone book`
-        );
-        console.log(data);
-        dispatch(addContact(data))
-    
+    console.log(data);
+    dispatch(addContact(data));
+    name.value="";
+    number.value="";
+
   };
-
-
-
+  
   return (
     <Form onSubmit={handleSubmit}>
       <BoxName>
@@ -70,7 +66,7 @@ export default function ContactForm() {
           <Input
             type="text"
             // onChange={handleChange}
-            // value={name}
+            // value={e=> e.target.name}
             name="name"
             // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             // title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
@@ -96,6 +92,3 @@ export default function ContactForm() {
     </Form>
   );
 }
-    
-  
-    

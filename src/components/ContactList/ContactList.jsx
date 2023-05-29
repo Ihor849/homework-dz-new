@@ -10,6 +10,7 @@ export const ContactsList = () => {
 
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts);
+  console.log(contacts);
   const filter = useSelector(state => state.filter);
 
   const filterContacts = 
