@@ -11,14 +11,16 @@ import { GlobalStyle } from './style/GlobalStyle';
 import { store } from 'redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-   
-      <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <AppHook />
-      </Provider>
-      </ThemeProvider>
-      <GlobalStyle />
+  
+    <React.StrictMode>
     
-  </React.StrictMode>
+        <ThemeProvider theme={theme}>
+    
+          <AppHook />
+    
+        </ThemeProvider>
+        <GlobalStyle />
+    
+    </React.StrictMode>
+  
 );
