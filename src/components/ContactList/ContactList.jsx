@@ -11,9 +11,9 @@ export const ContactsList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContactsList);
   const filter = useSelector(getContactsFilter);
- 
+ console.log(contacts);
   const filterContacts = 
-    [...contacts.filter(contact => contact.name.toLowerCase().includes(filter))]
+    [...contacts.filter(contact => contact.name.toLowerCase().includes(filter.filter))]
     
   ;
   console.log(contacts);
@@ -43,9 +43,9 @@ export const ContactsList = () => {
 
 
   return (
-    filterContacts.length !== 0 && (
+    contacts.length !== 0 && (
       <List>
-        {contacts.map(({ id, name, number }) => (
+        {filterContacts.map(({ id, name, number }) => (
           <ContactItem
             key={id}
             name={name}
