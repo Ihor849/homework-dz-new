@@ -1,4 +1,5 @@
 // import {useReducer } from 'react';
+import { getContactsList } from 'redux/selectors';
 import Notiflix from 'notiflix';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +23,7 @@ import {
 
 export default function ContactForm() {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getContactsList);
   
   const handleSubmit = e => {
     

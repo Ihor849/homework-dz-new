@@ -14,11 +14,13 @@ import storage from 'redux-persist/lib/storage'
 
 import  {contactsReducer}  from './contactsSlice';
 import { filterReducer } from './filtersSlice';
+import { createStore } from 'react-redux';
 
 const persistConfig = {
-  key: 'contacts',
+  key: 'localContacts',
   version: 1,
   storage,
+  // whitelist:["contacts"],
 }
 
 const persistedContactsReducer = persistReducer(persistConfig, contactsReducer)
@@ -39,5 +41,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store)
-
-export default store

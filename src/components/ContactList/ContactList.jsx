@@ -1,4 +1,5 @@
 // import propTypes from 'prop-types';
+import { getContactsList,getContactsFilter } from 'redux/selectors';
 import { ContactItem } from 'components/ContactsItem/ContactsItem';
 import { List } from './ContactList.styled';
 import Notiflix from 'notiflix';
@@ -7,19 +8,17 @@ import { deleteContact, updateContact } from 'redux/contactsSlice';
 
 
 export const ContactsList = () => {
-
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
-  console.log(contacts);
-  const filter = useSelector(state => state.filter);
-
+  const contacts = useSelector(getContactsList);
+  const filter = useSelector(getContactsFilter);
+ 
   const filterContacts = 
-    [...contacts.filter(contact => contact.name.toLowerCase().includes(filter.filter))]
+    [...contacts.filter(contact => contact.name.toLowerCase().includes(filter))]
     
   ;
   console.log(contacts);
-  console.log(filter.filter);
-console.log(filterContacts);
+  console.log(filterContacts);
+  console.log(filter);
 
   const onDelete = (id, name) => {
     Notiflix.Confirm.show(
@@ -44,9 +43,9 @@ console.log(filterContacts);
 
 
   return (
-    contacts.length !== 0 && (
+    filterContacts.length !== 0 && (
       <List>
-        {filterContacts.map(({ id, name, number }) => (
+        {contacts.map(({ id, name, number }) => (
           <ContactItem
             key={id}
             name={name}
