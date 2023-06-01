@@ -1,38 +1,7 @@
-// import propTypes from 'prop-types';
-import { useDispatch, useSelector} from 'react-redux';
-
-import { filterContacts, getFilterValue } from '../../redux/filtersSlice';
-
+import propTypes from 'prop-types';
 import { BoxFilter, Label, Input } from './ContactFilter.styled';
 
-
-export const ContactFilter = () => {
-  const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
-  const filter = useSelector(state => state.filter);
-  
-
-  const filterValue = useSelector(getFilterValue);
-
-
-  // const changeFilter = e => {
-  //   console.log(e.target.value);
-    
-  //   if (filter) {
-  //     console.log("HHHHHHHH");
-  //     console.log(contacts);
-
-  //     return contacts.filter(
-  //       contact =>contact.name.toLowerCase().includes(filter));
-      
-  //   } 
-
-  //   // return contactsFilter;
-  //   dispatch(filterContacts(e.target.value));
-  //   console.log(filter);
-  // };
-    
-
+export const ContactFilter = ({ filter, onFilter, dis }) => {
   return (
     <BoxFilter>
       <Label htmlFor="filter">Find contacts by name</Label>
@@ -40,15 +9,15 @@ export const ContactFilter = () => {
       <Input
         type="text"
         name="filter"
-        value={filterValue}
-        onChange={event => dispatch(filterContacts(event.currentTarget.value))}
+        value={filter}
+        onChange={onFilter}
         // disabled={dis}
       />
     </BoxFilter>
   );
 };
 
-// ContactFilter.propEypes = {
-//   filter: propTypes.string,
-//   onFilter: propTypes.func,
-// };
+ContactFilter.propEypes = {
+  filter: propTypes.string,
+  onFilter: propTypes.func,
+};
