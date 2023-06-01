@@ -1,4 +1,4 @@
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
 import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
 import {
@@ -10,7 +10,7 @@ import {
   Button,
 } from './ContactForm.styled';
 
-export default function ContactForm({ onSubmit }) {
+export const ContactForm=({ onSubmit })=> {
   const handleSubmit = ({ name, number }, { resetForm }) => {
     const contact = { id: nanoid(), name, number };
     onSubmit(contact);
@@ -18,7 +18,7 @@ export default function ContactForm({ onSubmit }) {
   };
 
   return (
-    <Formik initialValues={{ name: '', number: '' }} onSubmit={handleSubmit}>
+    < Formik initialValues={{ name: '', number: '' }} onSubmit={handleSubmit}>
       <FormBlock autoComplete="off">
         <BoxName>
           <Label htmlFor="name">Name</Label>
@@ -43,11 +43,11 @@ export default function ContactForm({ onSubmit }) {
 
         <Button type="submit">Add contact</Button>
       </FormBlock>
-    </Formik>
+    </ Formik>
   );
 }
-
-ContactForm.protoTypes = {
-  onSubmit: propTypes.func.isRequired,
-  contacts: propTypes.arrayOf(propTypes.object).isRequired,
-};
+export default ContactForm
+// ContactForm.protoTypes = {
+//   onSubmit: propTypes.func.isRequired,
+//   contacts: propTypes.arrayOf(propTypes.object).isRequired,
+// };
