@@ -1,4 +1,4 @@
-// import { createSlice, nanoid } from '@reduxjs/toolkit';
+// import { createSlice } from '@reduxjs/toolkit';
 
 // const contactsInitialState =  [
 //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -13,17 +13,18 @@
 //   reducers: {
 //     addContact: {
 //       reducer(state, action) {
+        
 //         return [...state, action.payload];
 //       },
 
-//       prepare(data) {
-//         return {
-//           payload: {
-//             id: nanoid(),
-//             ...data,
-//           },
-//         };
-//       },
+//     //   prepare(data) {
+//     //     return {
+//     //       payload: {
+//     //         id: nanoid(),
+//     //         ...data,
+//     //       },
+//     //     };
+//     //   },
 //     },
 
 //     deleteContact(state, action) {

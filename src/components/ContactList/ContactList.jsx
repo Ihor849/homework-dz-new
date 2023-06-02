@@ -1,8 +1,12 @@
-import propTypes from 'prop-types';
+// import propTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { getContactsList } from 'redux/selectors';
 import { ContactItem } from 'components/ContactsItem/ContactsItem';
 import { List } from './ContactList.styled';
 
-export const ContactsList = ({ contacts, onDelete,updateContact  }) => {
+
+export const ContactsList = ({ onDelete,updateContact  }) => {
+  const contacts=useSelector(getContactsList)
   return (
     contacts.length !== 0 && (
       <List>
@@ -22,7 +26,7 @@ export const ContactsList = ({ contacts, onDelete,updateContact  }) => {
   );
 };
 
-ContactsList.propTypes = {
-  contacts: propTypes.arrayOf(propTypes.object).isRequired,
-  onDelete: propTypes.func.isRequired,
-};
+// ContactsList.propTypes = {
+//   contacts: propTypes.arrayOf(propTypes.object).isRequired,
+//   onDelete: propTypes.func.isRequired,
+// };
