@@ -1,10 +1,11 @@
 // import {useReducer } from 'react';
-import { getContactsList } from 'redux/selectors';
+
 import Notiflix from 'notiflix';
-import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addContact } from 'redux/contactsSlice';
+import { getContactsList } from 'redux/selectors';
 import {
   Form,
   BoxName,
@@ -14,25 +15,21 @@ import {
   Button,
 } from './ContactForm.styled';
 
-// const DEFAULT_CONTACTS = [
-//   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-//   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-//   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-//   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-// ];
+
 
 export default function ContactForm() {
   const dispatch = useDispatch();
   const contacts = useSelector(getContactsList);
   
   const handleSubmit = e => {
-    
+    console.log(e);
     const { name, number } = e.target;
     console.log(name.value);
     e.preventDefault();
     const data = {
       name: name.value,
       number: number.value,
+      id: nanoid()
     };
 
     if (
@@ -54,8 +51,9 @@ export default function ContactForm() {
     
     console.log(data);
     dispatch(addContact(data));
-    name.value="";
-    number.value="";
+    // name.value="";
+    // number.value="";
+    e.target.reset();
 
   };
   

@@ -1,7 +1,8 @@
 // import propTypes from 'prop-types';
 import { useDispatch, useSelector} from 'react-redux';
 
-import { filterContacts, getFilterValue } from '../../redux/filtersSlice';
+// import { filterContacts, getFilterValue } from '../../redux/filtersSlice';
+import { filterContacts} from '../../redux/filtersSlice';
 
 import { BoxFilter, Label, Input } from './ContactFilter.styled';
 
@@ -12,10 +13,13 @@ export const ContactFilter = () => {
   const filter = useSelector(state => state.filter);
   
 
-  const filterValue = useSelector(getFilterValue);
+  // const filterValue = useSelector(getFilterValue);
 
 
-  // const changeFilter = e => {
+  const handleChange = e => {
+    const value = e.target.value;
+    dispatch(filterContacts(value))
+  }
   //   console.log(e.target.value);
     
   //   if (filter) {
@@ -40,8 +44,8 @@ export const ContactFilter = () => {
       <Input
         type="text"
         name="filter"
-        value={filterValue}
-        onChange={event => dispatch(filterContacts(event.currentTarget.value))}
+        // value={filterValue}
+        onChange={filterContacts}
         // disabled={dis}
       />
     </BoxFilter>
