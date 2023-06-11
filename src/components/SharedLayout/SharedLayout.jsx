@@ -20,8 +20,18 @@ const SharedLayouts = () => {
               </StyledLink>
             </li>
             <li>
-              <StyledLink to="/movies">
-                <Clapperboard/> Movies
+              <StyledLink to="/register">
+                <Clapperboard/> Register
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/login">
+                <Clapperboard/> Login
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/contacts">
+                <Clapperboard/>Contacts
               </StyledLink>
             </li>
           </NavLinkItems>

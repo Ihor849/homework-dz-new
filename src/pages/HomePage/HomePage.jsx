@@ -4,9 +4,9 @@ const Home = () => {
   
   return (
     <div>
-      <MovieList  />
-      
-    </div>
+  <p>mango@mail.com</p>
+  <button>Logout</button>
+</div>
   );
 };
 
