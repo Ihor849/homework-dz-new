@@ -1,24 +1,36 @@
 import {Routes,Route} from 'react-router-dom'
 
 import SharedLayout from 'components/SharedLayout/SharedLayout'
-import HomePage from '../../pages/HomePage/HomePage'
-import MoviesPage from '../../pages/MoviesPage/MoviesPage'
-import MoviesDetails from '../../pages/MoviesDetails/MoviesDetails'
-import Cast from 'components/Cast/Cast'
-import Reviews from 'components/Reviews/Reviews'
+
+import PhonebookPage from 'pages/PhonebookPage/PhonebookPage'
+import LoginPage from 'pages/LoginPage/LoginPage'
+import RegisterPage from 'pages/RegisterPage/RegisterPage'
+import HomePage from 'pages/HomePage/HomePage'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { authOperations } from 'redux/auth'
+
+
 
 
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
-        <Route path="movies" element={<MoviesPage />} />
-        <Route path="movies/:movieId" element={<MoviesDetails />}> 
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
-        </Route> 
+        <Route exact index element={<HomePage />} />
+        <Route path="/phonebook" element={<PhonebookPage/>} />
+        <Route path="/register" element={<RegisterPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        
+         
       </Route>
     </Routes>
   );

@@ -1,0 +1,12 @@
+import styled from "styled-components";
+
+export const Container=styled.div`
+  display:flex;
+  align-items:center;  
+  justify-content:center;
+`
+export const Title=styled.h1`
+    font-weight:500px;
+    font-size:48px;
+    text-align:center
+`

@@ -1,43 +1,25 @@
+import { useSelector } from 'react-redux';
 import { Suspense } from 'react';
-import { Outlet} from 'react-router-dom';
-import { ReactComponent as Clapperboard } from 'components/img/icons/Clapperboard.svg';
-import { ReactComponent as Popcorn } from 'components/img/icons/Popcorn.svg';
-import {Container, Header, StyledLink,NavLinkItems} from './SharedLayout.styled';
-
-
-
-
+import { Outlet } from 'react-router-dom';
+// import { ReactComponent as Clapperboard } from '../../img/icons/Clapperboard.svg';
+// import { ReactComponent as Popcorn } from '../../img/icons/Popcorn.svg';
+import { Container, Header } from './SharedLayout.styled';
+import Navigation from 'components/Navigation/NavigationUser';
+import AuthNav from 'components/Navigation/AuthNav';
+import UserMenu from 'components/Navigation/UserMenu';
+import { authSelectors } from 'redux/auth';
 
 const SharedLayouts = () => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <Container>
       <Header>
-        <nav>
-          <NavLinkItems>
-            <li>
-              <StyledLink to="/">
-              <Popcorn/> Home
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink to="/register">
-                <Clapperboard/> Register
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink to="/login">
-                <Clapperboard/> Login
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink to="/contacts">
-                <Clapperboard/>Contacts
-              </StyledLink>
-            </li>
-          </NavLinkItems>
-        </nav>
+        <Navigation />
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        {/* <AuthNav />
+        <UserMenu /> */}
       </Header>
-      <Suspense >
+      <Suspense>
         <Outlet />
       </Suspense>
     </Container>
@@ -45,5 +27,3 @@ const SharedLayouts = () => {
 };
 
 export default SharedLayouts;
-
-// fallback={<div>Loading page...</div>}
