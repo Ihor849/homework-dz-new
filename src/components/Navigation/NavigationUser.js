@@ -1,23 +1,32 @@
 
 import React from 'react';
 import { StyledLink } from 'components/SharedLayout/SharedLayout.styled';
+import { useSelector } from 'react-redux';
+import { authSelectors } from 'redux/auth';
+import AuthNav from './AuthNav';
 
 
-const Navigation = () => (
-  <div>
+const Navigation = () => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  return(
+    <div>
     <StyledLink to="/"
-     exact
+     exact="true"
      >
       Главная
     </StyledLink>
-
-    <StyledLink
+    {isLoggedIn && <StyledLink
       to="/phonebook"
-      exact
+      exact="true"
     >
       Phonebook
-    </StyledLink>
+    </StyledLink> }
+    
   </div>
-);
+  )
+  
+}
+  
+
 
 export default Navigation;

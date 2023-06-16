@@ -4,10 +4,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
 
-axios.defaults.baseURL = "https://connections-api.herokuapp.com";
+axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
 
 export const fetchContacts = createAsyncThunk(
-  "/contacts",
+  "contacts/fetchAll",
     // Використовуємо символ підкреслення як ім'я першого параметра,
     // тому що в цій операції він нам не потрібен
     async (_, thunkAPI) => {
@@ -23,11 +23,11 @@ export const fetchContacts = createAsyncThunk(
     }
 );
 export const addContact = createAsyncThunk(
-  // "/contacts",
-  async (newContact, thunkAPI) => {
-    const{name,number}=newContact
+  "contacts/addContact",
+  async ({name,number}, thunkAPI) => {
+    // const{name,number}=newContact
     
-    console.log(newContact);
+    // console.log(newContact);
     try {
       const response = await axios.post("/contacts", { name,number });
       return response.data;
@@ -56,7 +56,7 @@ export const updateContact = createAsyncThunk(
     
     try {
       // const response = await axios.put(`/contacts/${id}`,{name,phone});
-      const response = await axios.put(`/contacts/${id}`,{name,number});
+      const response = await axios.patch(`/contacts/${id}`,{name,number});
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -16,8 +16,6 @@ const SharedLayouts = () => {
       <Header>
         <Navigation />
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
-        {/* <AuthNav />
-        <UserMenu /> */}
       </Header>
       <Suspense>
         <Outlet />

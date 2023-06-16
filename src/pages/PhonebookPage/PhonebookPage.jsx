@@ -5,21 +5,19 @@ import Container from 'components/Container/Container';
 
 import { Section } from 'components/Section/Section';
 
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchContacts } from 'redux/operations';
-// import { getContactsList } from 'redux/selectors';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from 'redux/operations';
+import { getContactsList } from 'redux/selectors';
 
 const PhonebookPage = () => {
-  // const contacts = useSelector(getContactsList);
-  // const dispatch = useDispatch();
+  const contacts = useSelector(getContactsList);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts()).then(data=>{
-  //     const contacts = data.payload;
-  //     return contacts;
-  //   })
-  // }, [ dispatch])
+  useEffect(() => {
+    dispatch(fetchContacts())
+    
+  }, [ dispatch])
 
   return (
     <Container>

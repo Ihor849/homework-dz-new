@@ -17,11 +17,11 @@ export const ContactsList = () => {
   return (
     contacts.length !== 0 && (
       <List>
-        {filterContacts.map(({ id, name, phone }) => (
+        {filterContacts.map(({ id, name, number }) => (
           <ContactItem
             key={id}
             name={name}
-            number={phone}
+            number={number}
             id={id}
           />
         ))}

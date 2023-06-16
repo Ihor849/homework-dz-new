@@ -35,7 +35,9 @@ export default function LoginPage() {
     <Container>
       <h1>Страница логина</h1>
 
-      <Form onSubmit={handleSubmit} autoComplete="on">
+      <Form onSubmit={handleSubmit}
+       autoComplete="on"
+       >
         <Label>
           Почта
           <input

@@ -38,10 +38,12 @@ export default function RegisterPage() {
     <Container>
       <h1>Страница регистрации</h1>
 
-      <Form onSubmit={handleSubmit}  autoComplete="on">
+      <Form onSubmit={handleSubmit} 
+       autoComplete="on"
+       >
         <Label>
           Имя
-          <input type="text" name="name" value={name} autoComplete="on" onChange={handleChange} />
+          <input type="text" name="name" value={name} onChange={handleChange} />
         </Label>
 
         <Label >

@@ -4,10 +4,14 @@ import { ContainerUser, StyledLink } from 'components/SharedLayout/SharedLayout.
 export default function AuthNav() {
   return (
     <div>
-      <StyledLink to="/register" exact>
+      <StyledLink to="/register" 
+      exact="true"
+      >
         Регистрация
       </StyledLink>
-      <StyledLink to="/login" exact>
+      <StyledLink to="/login" 
+      exact="true"
+      >
         Логин
       </StyledLink>
     </div>

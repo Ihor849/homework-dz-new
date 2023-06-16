@@ -99,10 +99,14 @@ export const ContactItem = ({ id, name, number}) => {
       }
      
       
-      <Button type="button" onClick={onEditContact}>
+      <Button type="button" 
+      onClick={onEditContact}
+      >
         {isEdit? "Save contact" :"Edit contact"}
         </Button>
-      <Button type="button" onClick={() => onDelete(id, name)}>
+      <Button type="button" 
+      onClick={() => onDelete(id, name)}
+      >
         Delete
       </Button>
     </Item>

@@ -22,8 +22,8 @@ export default function ContactForm() {
     e.preventDefault();
     const form =e.currentTarget;
     let name = e.currentTarget.elements.name.value
-    let phone = e.currentTarget.elements.phone.value;
-    const newContact = {name,phone };
+    let number = e.currentTarget.elements.number.value;
+    const newContact = {name,number };
     if (
       contacts.find(
         contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
@@ -35,11 +35,11 @@ export default function ContactForm() {
         `${newContact.name} already in the phonebook`
       );
       return;
-    } else if (contacts.find(contact => contact.phone === newContact.phone)) {
+    } else if (contacts.find(contact => contact.number === newContact.number)) {
       console.log('НОМЕР есть');
       Notiflix.Report.info(
         'INFO',
-        `${newContact.phone} already in the phonebook`
+        `${newContact.number} already in the phonebook`
       );
       return;
     }
@@ -76,7 +76,7 @@ export default function ContactForm() {
             type="tel"
             // value={state.number}
             // onChange={hendleChange}
-            name="phone"
+            name="number"
             // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             // title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
             // required
